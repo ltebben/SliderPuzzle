@@ -29,8 +29,8 @@ public class SplitImage{
 		for (int row = 0; row < numRows; row++) {
 			for (int col = 0; col < numCols; col++) {
 				
-				if(row == numRows && col == numCols){
-					//Set top left block to white
+				if(row == numRows-1 && col == numCols-1){
+					//Set top bottom right block to white
 					BufferedImage whiteBlock = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_INT_ARGB);
 					Color White = new Color(255, 255, 255); 
 					int rgb = White.getRGB();
