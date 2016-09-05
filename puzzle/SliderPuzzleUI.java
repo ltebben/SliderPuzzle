@@ -2,6 +2,7 @@ package puzzle;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ public class SliderPuzzleUI {
 		JFrame frame = new JFrame("Slider Puzzle");
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 0;
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -39,10 +42,16 @@ public class SliderPuzzleUI {
 		// TODO: allow input for number of rows and columns
 		SplitImage splits = new SplitImage(image);
 		ArrayList<ImageIcon> list = splits.getImgIcons();
-		
+		int width = splits.getNumCols();
+		constraints.insets = new Insets(2,2,2,2);
 		for (int i = 0; i < list.size(); i++) {
+			if (constraints.gridx == width) {
+				constraints.gridy++;
+				constraints.gridx = 0;
+			}
 			JLabel label = new JLabel(list.get(i));
 			panel.add(label, constraints);
+			constraints.gridx++;
 		}
 		
 		// TODO: set size to width and height of image plus a little bit
