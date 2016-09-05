@@ -40,7 +40,7 @@ public class Puzzle {
 
 			for (int row = 0; row < numRows; row++) {
 				for (int col = 0; col < numCols; col++) {
-					imgIcons.add(new ImageIcon(img.getSubimage(row*chunkWidth, col*chunkHeight, chunkWidth, chunkHeight)));
+					imgIcons.add(new ImageIcon(img.getSubimage(col*chunkWidth, row*chunkHeight, chunkWidth, chunkHeight)));
 
 				}
 			}
