@@ -29,15 +29,14 @@ public class SplitImage{
 		for (int row = 0; row < numRows; row++) {
 			for (int col = 0; col < numCols; col++) {
 				
-				if(row == 0 && col == 0){
+				if(row == numRows && col == numCols){
 					//Set top left block to white
 					BufferedImage whiteBlock = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_INT_ARGB);
 					Color White = new Color(255, 255, 255); 
 					int rgb = White.getRGB();
-
-					for(int r = 0; r < chunkHeight; r++){
-						for(int c = 0; c < chunkWidth; c++){
-							whiteBlock.setRGB(r, c, rgb);
+					for(int r = height-chunkHeight; r < chunkHeight; r++){
+						for(int c = width-chunkWidth; c < chunkWidth; c++){
+							whiteBlock.setRGB(c, r, rgb);
 						}
 					}
 					
