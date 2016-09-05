@@ -8,7 +8,12 @@ import javax.swing.JFrame;
 
 
 public class Puzzle {
-
+	public class ImageDetails{
+		private int width;
+		private int height;
+		public int GetWidth(BufferedImage img){return img.getWidth();}
+		public int GetHeight(BufferedImage img){return img.getHeight();}
+	}
 	static BufferedImage readImage(){
 		BufferedImage img = null;
 		try {
