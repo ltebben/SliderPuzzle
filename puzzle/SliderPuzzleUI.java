@@ -1,3 +1,5 @@
+package puzzle;
+
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.io.*;
