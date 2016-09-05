@@ -18,21 +18,7 @@ public class SliderPuzzleUI {
 		BufferedImage image = ImageIO.read(istream);
 		
 		// TODO: allow input for number of rows and columns
-		int numRows = 3;
-		int numCols = 3;
-		int numChunks = numRows*numCols;
 		
-		int chunkWidth = image.getWidth() / numCols;
-		int chunkHeight = image.getHeight() / numRows;
-		
-		ArrayList<BufferedImage> imgs = new ArrayList<BufferedImage>();
-		
-		for (int row = 0; row < numRows; row++) {
-			for (int col = 0; col < numCols; col++) {
-				imgs.add(new BufferedImage(chunkWidth, chunkHeight, image.getType()));
-				
-			}
-		}
 		
 		JLabel label = new JLabel(icon);
 		frame.getContentPane().add(label);
