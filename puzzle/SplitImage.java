@@ -1,5 +1,6 @@
 package puzzle;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -23,12 +24,27 @@ public class SplitImage{
 
 		for (int row = 0; row < numRows; row++) {
 			for (int col = 0; col < numCols; col++) {
-				imgIcons.add(new ImageIcon(img.getSubimage(col*chunkWidth, row*chunkHeight, chunkWidth, chunkHeight)));
+				
+				if(row == 0 && col == 0){
+					BufferedImage whiteBlock = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_INT_ARGB);
+					Color White = new Color(255, 255, 255); 
+					int rgb = White.getRGB();
 
+					for(int r = 0; r < chunkHeight; r++){
+						for(int c = 0; c < chunkWidth; c++){
+							whiteBlock.setRGB(r, c, rgb);
+						}
+					}
+					imgIcons.add(new ImageIcon(whiteBlock));
+				}
+				
+				else{
+					imgIcons.add(new ImageIcon(img.getSubimage(col*chunkWidth, row*chunkHeight, chunkWidth, chunkHeight)));
+				}
 			}
 		}
 	}
-	
+
 	public ArrayList<ImageIcon> getImgIcons(){return imgIcons;}
-	
+
 }
