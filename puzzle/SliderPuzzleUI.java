@@ -1,17 +1,20 @@
 package puzzle;
 
-import javax.swing.*;
-import javax.imageio.ImageIO;
-import java.io.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
-
-import puzzle.Puzzle.*;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class SliderPuzzleUI {
 	
 	private static void show() {
 		JFrame frame = new JFrame("Slider Puzzle");
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// TODO: allow file browser or some sort of input
@@ -39,7 +42,7 @@ public class SliderPuzzleUI {
 		
 		for (int i = 0; i < list.size(); i++) {
 			JLabel label = new JLabel(list.get(i));
-			frame.getContentPane().add(label);
+			panel.add(label, constraints);
 		}
 		
 		// TODO: set size to width and height of image plus a little bit
