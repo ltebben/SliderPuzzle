@@ -35,8 +35,7 @@ class SliderPuzzleListener implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println("SWAPPING");
-		frame.splits.swapTiles((ImageIcon)(label.getIcon()));
-		SliderPuzzleUI.UpdateUI();
+		boolean isSwapped = frame.splits.swapTiles((ImageIcon)(label.getIcon()));
+		if (isSwapped == true){System.out.println("SWAPPING"); SliderPuzzleUI.UpdateUI();}
 	}
 }
