@@ -33,7 +33,7 @@ public class SplitImage{
 			for (int col = 0; col < numCols; col++) {
 
 				if(row == numRows-1 && col == numCols-1){
-					//Set top bottom right block to white
+					//Set bottom right block to white
 					BufferedImage whiteBlock = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_INT_ARGB);
 					Color White = new Color(255, 255, 255); 
 					int rgb = White.getRGB();
@@ -45,6 +45,7 @@ public class SplitImage{
 					ImageIcon wb = new ImageIcon(whiteBlock);
 					whiteCode = wb.hashCode();
 					imgIcons.add(wb);
+			
 
 				}
 
@@ -53,10 +54,10 @@ public class SplitImage{
 				}
 			}
 		}
-		whitePos = imgIcons.size()-1;
+		whitePos = 0;
 	}
 
-	public void swapTiles(ImageIcon Icon1){
+	public boolean swapTiles(ImageIcon Icon1){
 		int right=-1;
 		int left=-1;
 		int above=-1;
@@ -64,18 +65,19 @@ public class SplitImage{
 		for(int i=0; i<imgIcons.size();i++){
 			if(imgIcons.get(i).equals(Icon1)){
 				
-				if(i<(imgIcons.size())-1){right = i+1;}
-				if(i>0){left = i-1;}
+				if((i<(imgIcons.size())-1) && (i+1)/numCols!=1){right = i+1;}
+				if((i>0) && i/numCols!=1){left = i-1;}
 				if(i-numCols>=0){above = i-numCols;}
-				if(i+numCols<(imgIcons.size())-1){below = i+numCols;}
+				if(i+numCols<(imgIcons.size())){below = i+numCols;}
 				
 				if(right == whitePos || left==whitePos || above==whitePos || below==whitePos){
 					Collections.swap(imgIcons, i, whitePos);
 					whitePos = i;
-					break;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 
 	public ArrayList<ImageIcon> getImgIcons(){return imgIcons;}
