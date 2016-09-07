@@ -1,6 +1,5 @@
 package puzzle;
 
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,6 +10,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class SliderPuzzleUI{
+	
+	static SliderPuzzleFrame frame;
+	static JPanel panel;
 	
 	private static BufferedImage OpenAndCheckFile() {
 		// TODO: allow file browser or some sort of input
@@ -36,18 +38,10 @@ public class SliderPuzzleUI{
 		return image;
 	};
 	
-	private static void DoUI() {
-		JFrame frame = new JFrame("Slider Puzzle");
-		JPanel panel = new JPanel(new GridBagLayout());
-
-		frame.add(panel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		// TODO: allow input for number of rows and columns
-		BufferedImage buffIm = OpenAndCheckFile();
-		SplitImage splits = new SplitImage(buffIm);
-		ArrayList<ImageIcon> list = splits.getImgIcons();
-		int width = splits.getNumCols();
+	static void UpdateUI() {
+		frame.invalidate();
+		ArrayList<ImageIcon> list = frame.splits.getImgIcons();
+		int width = frame.splits.getNumCols();
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.gridx = 0;
 		constraints.gridy = 0;
@@ -63,11 +57,26 @@ public class SliderPuzzleUI{
 			newCons.insets = new Insets(2,2,2,2);
 			
 			SliderPuzzleLabel label = new SliderPuzzleLabel(list.get(i));
-			label.addMouseListener(new SliderPuzzleListener(i, label));
+			label.addMouseListener(new SliderPuzzleListener(i, label, frame));
 			label.addConstraints(newCons);
 			panel.add(label, label.getConstraints());
 			constraints.gridx++;
 		}
+		frame.validate();
+		frame.repaint();
+	}
+	
+	private static void DoUI() {
+		frame = new SliderPuzzleFrame("Slider Puzzle");
+		panel = new JPanel(new GridBagLayout());
+		frame.add(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// TODO: allow input for number of rows and columns
+		BufferedImage buffIm = OpenAndCheckFile();
+		frame.splits = new SplitImage(buffIm);
+		
+		UpdateUI();
 		
 		// TODO: set size to width and height of image plus a little bit
 		frame.setSize(buffIm.getWidth() + 50, buffIm.getHeight() + 50);
