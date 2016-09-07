@@ -6,6 +6,7 @@ import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -15,9 +16,12 @@ public class SliderPuzzleUI{
 	static JPanel panel;
 	
 	private static BufferedImage OpenAndCheckFile() {
-		// TODO: allow file browser or some sort of input
-		// Possibly also allow preselected images
-		File inputFile = new File("cat.jpg");
+		
+		System.out.print("Please enter the name of your image file: ");
+		Scanner scan = new Scanner(System.in);
+		String inputStr = scan.nextLine();
+		File inputFile = new File(inputStr);
+		scan.close();
 		FileInputStream istream = null;
 		BufferedImage image = null;
 		
@@ -69,6 +73,7 @@ public class SliderPuzzleUI{
 		frame = new SliderPuzzleFrame("Slider Puzzle");
 		panel = new JPanel(new GridBagLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
 		
 		// TODO: allow input for number of rows and columns
 		BufferedImage buffIm = OpenAndCheckFile();

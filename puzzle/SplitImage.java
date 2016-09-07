@@ -32,28 +32,29 @@ public class SplitImage{
 		for (int row = 0; row < numRows; row++) {
 			for (int col = 0; col < numCols; col++) {
 
-				if(row == numRows-1 && col == numCols-1){
+				if(row == numRows-1 && col == numCols-1) {
 					//Set bottom right block to white
 					BufferedImage whiteBlock = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_INT_ARGB);
 					Color White = new Color(255, 255, 255); 
 					int rgb = White.getRGB();
-					for(int r = height-chunkHeight; r < chunkHeight; r++){
-						for(int c = width-chunkWidth; c < chunkWidth; c++){
+					for (int r = height-chunkHeight; r < chunkHeight; r++) {
+						for (int c = width-chunkWidth; c < chunkWidth; c++) {
 							whiteBlock.setRGB(c, r, rgb);
 						}
 					}
 					ImageIcon wb = new ImageIcon(whiteBlock);
 					whiteCode = wb.hashCode();
 					imgIcons.add(wb);
-			
-
 				}
-
-				else{
+				else {
 					imgIcons.add(new ImageIcon(img.getSubimage(col*chunkWidth, row*chunkHeight, chunkWidth, chunkHeight)));
 				}
 			}
 		}
+		ImageIcon whiteImage = imgIcons.remove(imgIcons.size() - 1);
+		
+		Collections.shuffle(imgIcons);
+		imgIcons.add(whiteImage);
 		whitePos = imgIcons.size()-1;
 	}
 
