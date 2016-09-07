@@ -14,6 +14,7 @@ public class SliderPuzzleUI{
 	
 	static SliderPuzzleFrame frame;
 	static JPanel panel;
+	static boolean gameWon = false;
 	
 	private static BufferedImage OpenAndCheckFile() {
 		
@@ -44,7 +45,6 @@ public class SliderPuzzleUI{
 	
 	static void UpdateUI() {
 		panel.removeAll();
-		frame.invalidate();
 		ArrayList<ImageIcon> list = frame.splits.getImgIcons();
 		int width = frame.splits.getNumCols();
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -52,6 +52,7 @@ public class SliderPuzzleUI{
 		constraints.gridy = 0;
 		constraints.insets = new Insets(2,2,2,2);
 		for (int i = 0; i < list.size(); i++) {
+			
 			GridBagConstraints newCons = new GridBagConstraints();
 			if (constraints.gridx == width) {
 				constraints.gridy++;
@@ -62,14 +63,16 @@ public class SliderPuzzleUI{
 			newCons.insets = new Insets(2,2,2,2);
 			
 			SliderPuzzleLabel label = new SliderPuzzleLabel(list.get(i));
-			label.addMouseListener(new SliderPuzzleListener(i, label));
+			
+			if (!gameWon) {
+				label.addMouseListener(new SliderPuzzleListener(i, label));
+			}
+
 			label.addConstraints(newCons);
 			panel.add(label, label.getConstraints());
 			constraints.gridx++;
 		}
 		panel.validate();
-		frame.validate();
-		frame.repaint();
 	}
 	
 	private static void DoUI() {
@@ -85,7 +88,6 @@ public class SliderPuzzleUI{
 		
 		UpdateUI();
 		
-		// TODO: set size to width and height of image plus a little bit
 		frame.setSize(buffIm.getWidth() + 50, buffIm.getHeight() + 50);
 		frame.setVisible(true);
 	}
@@ -94,7 +96,6 @@ public class SliderPuzzleUI{
 	public static void main(String[] args) {
 		
 		javax.swing.SwingUtilities.invokeLater(
-				new Runnable() { public void run() {DoUI();} }
-				);
+				new Runnable() { public void run() {DoUI();} });
 	}
 }

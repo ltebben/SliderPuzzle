@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 
 class SliderPuzzleListener implements MouseListener {
+	
 	int pos;
 	SliderPuzzleLabel label;
 	
@@ -13,7 +14,6 @@ class SliderPuzzleListener implements MouseListener {
 		pos = position;
 		label = inputLabel;
 	}
-	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -33,12 +33,14 @@ class SliderPuzzleListener implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		boolean isSwapped = SliderPuzzleUI.frame.splits.swapTiles((ImageIcon)(label.getIcon()));
-		if (isSwapped == true){System.out.println("SWAPPING"); 
+		if (SliderPuzzleUI.frame.splits.swapTiles((ImageIcon)(label.getIcon()))) {
+			 
 			SliderPuzzleUI.UpdateUI();
+			
 			if(SliderPuzzleUI.frame.splits.checkWin()){
 				System.out.println("You Win!!");
+				SliderPuzzleUI.gameWon = true;
 			}
-				}
+		}
 	}
 }

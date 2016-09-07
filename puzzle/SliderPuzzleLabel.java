@@ -26,12 +26,4 @@ public class SliderPuzzleLabel extends JLabel {
 	public GridBagConstraints getConstraints() {
 		return gridCons;
 	}
-	
-	public int getGridX() { 
-		return gridCons.gridx;
-	}
-	
-	public int getGridY() { 
-		return gridCons.gridy;
-	}
 }
