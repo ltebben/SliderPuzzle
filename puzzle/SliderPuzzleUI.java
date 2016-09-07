@@ -17,7 +17,7 @@ public class SliderPuzzleUI{
 	private static BufferedImage OpenAndCheckFile() {
 		// TODO: allow file browser or some sort of input
 		// Possibly also allow preselected images
-		File inputFile = new File("C:\\Users\\Laura\\workspace\\16_puzzle\\cat.jpg");
+		File inputFile = new File("cat.jpg");
 		FileInputStream istream = null;
 		BufferedImage image = null;
 		
