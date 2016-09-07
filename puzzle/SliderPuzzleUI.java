@@ -17,7 +17,7 @@ public class SliderPuzzleUI{
 	private static BufferedImage OpenAndCheckFile() {
 		// TODO: allow file browser or some sort of input
 		// Possibly also allow preselected images
-		File inputFile = new File("/home/zach/Downloads/cat.jpg");
+		File inputFile = new File("C:\\Users\\Laura\\workspace\\16_puzzle\\cat.jpg");
 		FileInputStream istream = null;
 		BufferedImage image = null;
 		
@@ -39,6 +39,7 @@ public class SliderPuzzleUI{
 	};
 	
 	static void UpdateUI() {
+		panel.removeAll();
 		frame.invalidate();
 		ArrayList<ImageIcon> list = frame.splits.getImgIcons();
 		int width = frame.splits.getNumCols();
@@ -62,6 +63,7 @@ public class SliderPuzzleUI{
 			panel.add(label, label.getConstraints());
 			constraints.gridx++;
 		}
+		panel.validate();
 		frame.validate();
 		frame.repaint();
 	}
