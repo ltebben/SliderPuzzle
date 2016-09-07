@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public class SplitImage{
 	private ArrayList<ImageIcon> imgIcons = new ArrayList<ImageIcon>();
-	private ArrayList<ImageIcon> inOrder = new ArrayList<ImageIcon>();
+	private ArrayList<ImageIcon> inOrder;
 	private int numRows, numCols;
 	private int whiteCode;
 	private int whitePos;
@@ -46,22 +46,27 @@ public class SplitImage{
 					ImageIcon wb = new ImageIcon(whiteBlock);
 					whiteCode = wb.hashCode();
 					imgIcons.add(wb);
-			
+<<<<<<< HEAD
 
+
+=======
+>>>>>>> 550503ffe44dda057fe97444c0ba3cb4e938188d
 				}
-
-				else{
+				else {
 					imgIcons.add(new ImageIcon(img.getSubimage(col*chunkWidth, row*chunkHeight, chunkWidth, chunkHeight)));
 				}
 			}
 		}
+<<<<<<< HEAD
 		for(ImageIcon e: imgIcons){
 			inOrder.add(e);
 		}
+=======
 		ImageIcon whiteImage = imgIcons.remove(imgIcons.size() - 1);
 		
 		Collections.shuffle(imgIcons);
 		imgIcons.add(whiteImage);
+>>>>>>> 550503ffe44dda057fe97444c0ba3cb4e938188d
 		whitePos = imgIcons.size()-1;
 	}
 
