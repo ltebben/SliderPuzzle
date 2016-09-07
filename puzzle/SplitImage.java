@@ -54,7 +54,7 @@ public class SplitImage{
 				}
 			}
 		}
-		whitePos = 0;
+		whitePos = imgIcons.size() - 1;
 	}
 
 	public boolean swapTiles(ImageIcon Icon1){
