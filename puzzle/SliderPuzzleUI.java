@@ -40,6 +40,7 @@ public class SliderPuzzleUI{
 	
 	static void UpdateUI() {
 		panel.removeAll();
+		frame.invalidate();
 		ArrayList<ImageIcon> list = frame.splits.getImgIcons();
 		int width = frame.splits.getNumCols();
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -63,11 +64,14 @@ public class SliderPuzzleUI{
 			constraints.gridx++;
 		}
 		panel.validate();
+		frame.validate();
+		frame.repaint();
 	}
 	
 	private static void DoUI() {
 		frame = new SliderPuzzleFrame("Slider Puzzle");
 		panel = new JPanel(new GridBagLayout());
+		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// TODO: allow input for number of rows and columns
