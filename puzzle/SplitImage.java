@@ -54,7 +54,7 @@ public class SplitImage{
 				}
 			}
 		}
-		whitePos = imgIcons.size() - 1;
+		whitePos = imgIcons.size()-1;
 	}
 
 	public boolean swapTiles(ImageIcon Icon1){
@@ -63,10 +63,12 @@ public class SplitImage{
 		int above=-1;
 		int below=-1;
 		for(int i=0; i<imgIcons.size();i++){
-			if(imgIcons.get(i).equals(Icon1)){
-				
-				if((i<(imgIcons.size())-1) && (i+1)/numCols!=1){right = i+1;}
-				if((i>0) && i/numCols!=1){left = i-1;}
+			int ghash = imgIcons.get(i).hashCode();
+			int ihash = Icon1.hashCode();
+			if(ghash == ihash){
+				double x = i;
+				if((i<(imgIcons.size())-1) && ((x+1)/numCols)!=1){right = i+1;}
+				if((i>0) && x/numCols!=1){left = i-1;}
 				if(i-numCols>=0){above = i-numCols;}
 				if(i+numCols<(imgIcons.size())){below = i+numCols;}
 				
