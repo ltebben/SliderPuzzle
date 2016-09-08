@@ -72,7 +72,12 @@ public class SliderPuzzleUI{
 			panel.add(label, label.getConstraints());
 			constraints.gridx++;
 		}
-		panel.validate();
+		panel.revalidate();
+		panel.repaint();
+		
+		if (gameWon) {
+			JOptionPane.showMessageDialog(null, "YOU WIN!");
+		}
 	}
 	
 	private static void DoUI() {
