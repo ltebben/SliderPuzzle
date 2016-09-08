@@ -5,13 +5,13 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 
+// Class to hold mouse listener for slider puzzle
 class SliderPuzzleListener implements MouseListener {
 	
-	int pos;
 	SliderPuzzleLabel label;
 	
+	// TODO: remove position from constructor
 	SliderPuzzleListener(int position, SliderPuzzleLabel inputLabel) {
-		pos = position;
 		label = inputLabel;
 	}
 	
@@ -33,14 +33,13 @@ class SliderPuzzleListener implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (SliderPuzzleUI.frame.splits.swapTiles((ImageIcon)(label.getIcon()))) {
-			 
-			SliderPuzzleUI.UpdateUI();
+		if (SliderPuzzleUI.splits.swapTiles((ImageIcon)(label.getIcon()))) {
 			
-			if(SliderPuzzleUI.frame.splits.checkWin()){
-				System.out.println("You Win!!");
+			if(SliderPuzzleUI.splits.checkWin()){
 				SliderPuzzleUI.gameWon = true;
 			}
+			
+			SliderPuzzleUI.UpdateUI();
 		}
 	}
 }

@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+// Class to hold a label and its attached constraints. Maybe can do without this as well.
 public class SliderPuzzleLabel extends JLabel {
 	
 	/**
