@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 
 public class SplitImage{
 	private static ArrayList<ImageIcon> imgIcons = new ArrayList<ImageIcon>();
-	private ArrayList<ImageIcon> inOrder = new ArrayList<ImageIcon>();
-	private int numRows, numCols;
-	private int whitePos;
+	private static ArrayList<ImageIcon> inOrder = new ArrayList<ImageIcon>();
+	private static int whitePos;
+	private static int numCols;
 
 	//constructor
 	SplitImage(BufferedImage img, int size){
@@ -20,8 +20,9 @@ public class SplitImage{
 		int width = img.getWidth();
 		int height = img.getHeight();
 
-		numRows = size;
-		numCols = size;
+		//gets user defined puzzle dimensions from SliderPuzzleUI
+		int numRows = SliderPuzzleUI.size;
+		int numCols = SliderPuzzleUI.size;
 
 		//creates chunk dimensions
 		int chunkWidth = width / numCols;
@@ -64,7 +65,7 @@ public class SplitImage{
 		whitePos = imgIcons.size()-1;
 	}
 
-	public boolean swapTiles(ImageIcon Icon1){
+	public static boolean swapTiles(ImageIcon Icon1){
 		//Sets adjacent positions to -1
 		int right=-1;
 		int left=-1;
@@ -78,6 +79,7 @@ public class SplitImage{
 			
 			//if the images match
 			if(ghash == ihash){
+				//need value of i to be a double for computations below
 				double x = i;
 				
 				//calculates the array indices of the tiles adjacent to the clicked tile
@@ -98,7 +100,7 @@ public class SplitImage{
 	}
 	
 	//check if the player won by comparing the modified array to the original array
-	public boolean checkWin(){
+	public static boolean checkWin(){
 		if(imgIcons.equals(inOrder)){
 			return true;
 		}

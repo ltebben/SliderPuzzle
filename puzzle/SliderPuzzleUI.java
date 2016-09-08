@@ -17,7 +17,7 @@ public class SliderPuzzleUI{
 	static boolean gameWon = false;
 	static SplitImage splits;
 	private static Scanner scan = new Scanner(System.in);
-	private static int size = 3;
+	public static int size = 3;
 	// Function to open the file and make sure it is actually a picture.
 	private static BufferedImage OpenAndCheckFile() {
 		
