@@ -17,7 +17,7 @@ public class SliderPuzzleUI{
 	static boolean gameWon = false;
 	static SplitImage splits;
 	private static Scanner scan = new Scanner(System.in);
-	
+	private static int size = 3;
 	// Function to open the file and make sure it is actually a picture.
 	private static BufferedImage OpenAndCheckFile() {
 		
@@ -54,8 +54,8 @@ public class SliderPuzzleUI{
 		panel.removeAll();
 		
 		// Get new ArrayList of images
-		ArrayList<ImageIcon> list = splits.getImgIcons();
-		int width = splits.getNumCols();
+		ArrayList<ImageIcon> list = SplitImage.getImgIcons();
+		int width = size;
 		
 		// Initialize constraints to format the panel
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -118,7 +118,6 @@ public class SliderPuzzleUI{
 		System.out.println("What size would you like the puzzle to be? (Enter 3 for 3x3, etc.)");
 		System.out.print("Size must be 3, 4, or 5: ");
 		
-		int size = 3;
 		do {
 			if(scan.hasNextInt()){
 				size = scan.nextInt();
