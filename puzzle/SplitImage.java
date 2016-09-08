@@ -12,17 +12,14 @@ public class SplitImage{
 	private static ArrayList<ImageIcon> imgIcons = new ArrayList<ImageIcon>();
 	private static ArrayList<ImageIcon> inOrder = new ArrayList<ImageIcon>();
 	private static int whitePos;
-	private static int numCols;
+	private static int numCols = SliderPuzzleUI.size;
+	private static int numRows = SliderPuzzleUI.size;
 
 	//constructor
 	SplitImage(BufferedImage img, int size){
 		//gets dimensions of original image
 		int width = img.getWidth();
 		int height = img.getHeight();
-
-		//gets user defined puzzle dimensions from SliderPuzzleUI
-		int numRows = SliderPuzzleUI.size;
-		int numCols = SliderPuzzleUI.size;
 
 		//creates chunk dimensions
 		int chunkWidth = width / numCols;
