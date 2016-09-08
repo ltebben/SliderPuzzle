@@ -16,14 +16,14 @@ public class SplitImage{
 	private int whitePos;
 
 	//constructor
-	SplitImage(BufferedImage img){
+	SplitImage(BufferedImage img, int size){
 		//get dimensions
 		ImageDetails det = new ImageDetails(img);
 		int width = det.GetWidth();
 		int height = det.GetHeight();
 
-		numRows = 3;
-		numCols = 3;
+		numRows = size;
+		numCols = size;
 
 		//create chunk dimensions
 		int chunkWidth = width / numCols;
@@ -54,11 +54,12 @@ public class SplitImage{
 				}
 			}
 		}
-		
+		//creates copy of ordered array to check win condition
 		for(ImageIcon e: imgIcons){
 			inOrder.add(e);
 		}
 		
+		//shuffles icons
 		ImageIcon whiteImage = imgIcons.remove(imgIcons.size() - 1);
 		Collections.shuffle(imgIcons);
 		imgIcons.add(whiteImage);

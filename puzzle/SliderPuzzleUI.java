@@ -15,28 +15,26 @@ public class SliderPuzzleUI{
 	static SliderPuzzleFrame frame;
 	static JPanel panel;
 	static boolean gameWon = false;
+	private static Scanner scan = new Scanner(System.in);
 	
 	private static BufferedImage OpenAndCheckFile() {
 		
 		System.out.print("Please enter the name of your image file: ");
-		Scanner scan = new Scanner(System.in);
 		String inputStr = scan.nextLine();
 		File inputFile = new File(inputStr);
-		scan.close();
 		FileInputStream istream = null;
 		BufferedImage image = null;
 		
 		try {
 			istream = new FileInputStream(inputFile);
 		} catch (FileNotFoundException e) {
-			// TODO: Catch block
-			e.printStackTrace();
+			System.out.println("File not found");
 		}
 		
 		try {
 			image = ImageIO.read(istream);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Could not read file");
 			e.printStackTrace();
 		}
 		
@@ -84,8 +82,13 @@ public class SliderPuzzleUI{
 		
 		// TODO: allow input for number of rows and columns
 		BufferedImage buffIm = OpenAndCheckFile();
-		frame.splits = new SplitImage(buffIm);
-		
+		int size = 3;
+		System.out.print("What size would you like the puzzle to be? (Enter 2 for 2x2, 3 for 3x3, etc.)");
+		if(scan.hasNextInt()){
+			size = scan.nextInt();
+			}
+		frame.splits = new SplitImage(buffIm, size);
+		scan.close();
 		UpdateUI();
 		
 		frame.setSize(buffIm.getWidth() + 50, buffIm.getHeight() + 50);
