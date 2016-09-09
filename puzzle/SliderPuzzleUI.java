@@ -116,7 +116,7 @@ public class SliderPuzzleUI{
 		// TODO: inputting an integer greater than int max crashes eclipse. We should get a string
 		// for input and cast it to an integer to be safe
 		System.out.println("What size would you like the puzzle to be? (Enter 3 for 3x3, etc.)");
-		System.out.print("Size must be 3, 4, or 5: ");
+		System.out.print("Size must be 3 or 5: ");
 		
 		do {
 			if(scan.hasNextInt()){
