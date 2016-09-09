@@ -115,17 +115,17 @@ public class SliderPuzzleUI{
 		// Get user input for puzzle size. Don't let them make it too big
 		// TODO: inputting an integer greater than int max crashes eclipse. We should get a string
 		// for input and cast it to an integer to be safe
-		System.out.println("What size would you like the puzzle to be? (Enter 3 for 3x3, etc.)");
-		System.out.print("Size must be 3 or 5: ");
+		System.out.println("What size would you like the puzzle to be?");
+		System.out.print("Enter 3 for 3x3 or 5 for 5x5: ");
 		
 		do {
 			if(scan.hasNextInt()){
 				size = scan.nextInt();
 			}
-			if (size < 3 || size > 5) {
-				System.out.print("Size must be 3, 4, or 5: ");
+			if (size != 3 && size != 5) {
+				System.out.print("Size must be 3 or 5: ");
 			}
-		} while (size > 5 || size < 3);
+		} while (size != 3 && size != 5);
 		scan.close();
 		
 		// SplitImage type holds images for puzzle pieces
