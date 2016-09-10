@@ -2,6 +2,7 @@ package puzzle;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -111,6 +112,25 @@ public class SliderPuzzleUI{
 		
 		// Open the input file
 		BufferedImage buffIm = OpenAndCheckFile();
+		
+		//rescale the image so it fits the screen
+		double w = buffIm.getWidth();
+		double h = buffIm.getHeight();
+		double maxDim = 900;
+		double scaleFactor;
+		if(w>h){
+			scaleFactor = maxDim/w;
+		}
+		else{
+			scaleFactor = maxDim/h;
+		}
+		int newWidth = (int)(w*scaleFactor);
+		int newHeight = (int)(h*scaleFactor);
+		
+		//write the scaled image back to buffIm
+		Image temp = buffIm.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+		buffIm = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+		buffIm.getGraphics().drawImage(temp, 0, 0, null);
 		
 		// Get user input for puzzle size. Don't let them make it too big
 		// TODO: inputting an integer greater than int max crashes eclipse. We should get a string
