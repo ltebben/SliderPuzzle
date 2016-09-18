@@ -1,2 +1,2 @@
 # SliderPuzzle
-Creating a slider puzzle just for fun
+Creating a slider puzzle in Java just for fun
