@@ -33,9 +33,9 @@ class SliderPuzzleListener implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (SliderPuzzleUI.splits.swapTiles((ImageIcon)(label.getIcon()))) {
+		if (SplitImage.swapTiles((ImageIcon)(label.getIcon()))) {
 			
-			if(SliderPuzzleUI.splits.checkWin()){
+			if(SplitImage.checkWin()){
 				SliderPuzzleUI.gameWon = true;
 			}
 			

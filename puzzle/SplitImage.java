@@ -16,7 +16,7 @@ public class SplitImage{
 	private static int numRows = SliderPuzzleUI.size;
 
 	//constructor
-	SplitImage(BufferedImage img, int size){
+	static void create(BufferedImage img, int size){
 		//gets dimensions of original image
 		int width = img.getWidth();
 		int height = img.getHeight();
@@ -68,37 +68,36 @@ public class SplitImage{
 		boolean solvable = false;
 
 		//keep shuffling until puzzle is solvable
-		do{
+		do {
 			ImageIcon whiteImage = imgIcons.remove(imgIcons.size() - 1);
 			Collections.shuffle(imgIcons);
 			imgIcons.add(whiteImage);
 			solvable = checkSolvable();
-		}while(!solvable);
+		} while(!solvable);
 		whitePos = imgIcons.size()-1;
 	}
 
-	public boolean checkSolvable(){
+	public static boolean checkSolvable() {
 		ImageIcon tempOut, tempIn;
 		int posOut, posIn;
 		int inversions = 0;
 
-		for(int i=0; i<imgIcons.size()-1; i++){
+		for (int i=0; i<imgIcons.size()-2; i++) {
 			//get initial position
 			tempOut = imgIcons.get(i);
 			posOut = Integer.parseInt(tempOut.getDescription());
 
-			for(int inner = 1; inner<imgIcons.size()-1; inner++){
+			for (int inner = i + 1; inner<imgIcons.size()-1; inner++) {
 				//get initial position
 				tempIn = imgIcons.get(inner);
 				posIn = Integer.parseInt(tempIn.getDescription());
 
 				//keep track of number of values that are less than the current value
-				if(posIn<posOut){inversions++;}
+				if (posIn<posOut) {inversions++;}
 			}
 		}
 		//solvable if number of inversions is even
-		if(inversions%2 == 0){return true;}
-		else{return false;}
+		return ((inversions % 2) == 0);
 	}
 
 	public static boolean swapTiles(ImageIcon Icon1){

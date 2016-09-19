@@ -16,9 +16,9 @@ public class SliderPuzzleUI{
 	static JFrame frame;
 	static JPanel panel;
 	static boolean gameWon = false;
-	static SplitImage splits;
 	private static Scanner scan = new Scanner(System.in);
-	public static int size = 3;
+	public static int size;
+	
 	// Function to open the file and make sure it is actually a picture.
 	private static BufferedImage OpenAndCheckFile() {
 		
@@ -113,15 +113,15 @@ public class SliderPuzzleUI{
 		// Open the input file
 		BufferedImage buffIm = OpenAndCheckFile();
 		
-		//rescale the image so it fits the screen
+		//resize the image so it fits the screen
 		double w = buffIm.getWidth();
 		double h = buffIm.getHeight();
 		double maxDim = 900;
 		double scaleFactor;
-		if(w>h){
+		if (w>h) {
 			scaleFactor = maxDim/w;
 		}
-		else{
+		else {
 			scaleFactor = maxDim/h;
 		}
 		int newWidth = (int)(w*scaleFactor);
@@ -149,7 +149,7 @@ public class SliderPuzzleUI{
 		scan.close();
 		
 		// SplitImage type holds images for puzzle pieces
-		splits = new SplitImage(buffIm, size);
+		SplitImage.create(buffIm, size);
 		
 		// Make UI
 		UpdateUI();
