@@ -2,6 +2,6 @@
 A slider puzzle made in Java.
 
 ### Usage
-Enter file path to image
-Select 3x3 or 5x5
-Click puzzle pieces to slide them
+- Browse to file (adorable cat picture included)
+- Select 3x3 or 5x5
+- Click puzzle pieces to slide them
