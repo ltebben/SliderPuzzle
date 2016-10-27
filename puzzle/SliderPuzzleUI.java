@@ -138,21 +138,10 @@ public class SliderPuzzleUI{
 		buffIm = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
 		buffIm.getGraphics().drawImage(temp, 0, 0, null);
 
-		// Get user input for puzzle size. Don't let them make it too big
-		// TODO: inputting an integer greater than int max crashes eclipse. We should get a string
-		// for input and cast it to an integer to be safe
-		System.out.println("What size would you like the puzzle to be?");
-		System.out.print("Enter 3 for 3x3 or 5 for 5x5: ");
+		Object[] options = {3, 5};
+		int n = JOptionPane.showOptionDialog(frame, "What size would you like the puzzle to be?", "Select Puzzle Size", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-		do {
-			if(scan.hasNextInt()){
-				size = scan.nextInt();
-			}
-			if (size != 3 && size != 5) {
-				System.out.print("Size must be 3 or 5: ");
-			}
-		} while (size != 3 && size != 5);
-		scan.close();
+		size = (int)options[n];
 
 		// SplitImage type holds images for puzzle pieces
 		SplitImage.create(buffIm, size);
